@@ -1,0 +1,26 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<a class="location-center btn btn-dark" href="addMovie">Add New</a>
+<h1 class="location-center">All The Movies</h1>
+
+<div class="container"></div>
+  {{#each movieData}}
+  <div class="col-md-3">
+     <div id="frame" class="well text-center">
+       <h2>{{this.title}}</h2>
+       <a class="btn btn-dark" href="{{this.imageSrc}}" target="_blank"><p>{{this.siteLink}}</p></a>
+       <br><br>
+         <form action="/movies/editMovie/{{this._id}}" method="POST">
+          <button class="btn-danger">Edit</button>
+         </form>
+         <br>
+         <form action="/movies/delete/{{this._id}}" method="POST">
+          <button class="btn-danger">Delete</button>
+         </form>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+      

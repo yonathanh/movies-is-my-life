@@ -36,9 +36,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li ><a href="/cinema">Cinema <span class="sr-only">(current)</span></a></li>
-        <li><a href="/movies/addMovie">Add Movie</a></li>
+        <li><a href="/movies/moviesAll">Show all Movies</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">My Favorites</a></li>
               <li role="separator" class="divider"></li>
@@ -55,9 +55,9 @@
         <button type="submit" class="btn btn-dark">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-
+          <li><a href="/movies/addMovie">Add Movie</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">My Favorites</a></li>
@@ -70,8 +70,12 @@
         
             {{#if user}}
             <li class="float-right"><a href="/logout">Logout</a> </li>
-            <a class="float-right" href="/profile"> {{user.username}}</a>
-             <img class="float-right" src="{{user.image}}" alt="">
+            <li><br>
+              <form action="/profile/{{user._id}}" method="POST">
+              <button class="float-right">{{user.username}}</button>
+              </form>
+            </li>
+             <img class="float-right profile-img" src="{{user.image}}" alt="">
             {{else}}
             <li class="float-right"><a href="/login">Log In</a></li>
             <li class="float-right"><a href="/signup">Sign Up</a> </li>

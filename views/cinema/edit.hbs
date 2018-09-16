@@ -1,0 +1,20 @@
+
+
+Hello editing
+
+
+
+<div class="location-center">
+    <form id="form" action="/cinema/update/{{theLink._id}}" method="POST" enctype="multipart/form-data">
+      <h2>Edit {{theLink.siteName}} Link</h2>
+
+        <label for="siteName">siteName</label>
+        <input class="form-control" type="text" name="name" value="{{theLink.siteName}}">
+
+        <label for="siteLink">siteLink</label>
+        <input class="form-control" type="text" name="link" value="{{theLink.siteLink}}">
+
+        <button class="btn btn-dark">Edit Link</button>
+        <br> <br>
+    </form>
+</div>

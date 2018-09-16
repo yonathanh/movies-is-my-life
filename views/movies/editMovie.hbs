@@ -1,0 +1,45 @@
+
+
+Hello editing
+
+{{!-- const movieSchema = new Schema({
+  user: String,
+  title: String,
+  genre: String,
+  imdbRating: String,
+  image: String,
+  imgName: String,
+  imgPath: String,
+  links: Array
+} --}}
+
+<div class="location-center">
+    <form id="form" action="/movies/update/{{theMovie._id}}" method="POST" enctype="multipart/form-data">
+      <h2>Edit {{theMovie.title}} Movie</h2>
+
+        <label for="siteName">Title</label>
+        <input class="form-control" type="text" name="theTitle" value="{{theMovie.title}}">
+
+        <label for="siteLink">Genre</label>
+        <input class="form-control" type="text" name="theGenre" value="{{theMovie.genre}}">
+
+        <label for="siteLink">imdbRating</label>
+        <input class="form-control" type="text" name="theRating" value="{{theMovie.imdbRating}}">
+
+        <label for="siteLink">Image</label>
+        <input class="form-control" type="text" name="theImage" value="{{theMovie.image}}">
+
+        <label for="poster">Poster</label>
+        <input class="form-control" type="file" name="thePhoto">
+
+        <label for="links">links</label>
+        <select class="form-control" name="theLinks">
+        {{#each links}}
+        <option value="{{this._id}}">{{this.siteLink}}</option>
+        {{/each}}
+        </select>
+
+        <button class="btn btn-dark">Edit Link</button>
+        <br> <br>
+    </form>
+</div>

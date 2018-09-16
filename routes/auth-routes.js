@@ -4,30 +4,27 @@ const router = express.Router();
 const passport = require("passport");
 const ensureLogin = require("connect-ensure-login");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const uploadCloud = require('../config/cloudinary.js');
 const nodemailer = require('nodemailer');
-
-/* GET signup  page */
-router.get('/signup', (req, res, next) => {
-  res.render('auth/signup');
-});
-
 
 // User model
 const User = require("../models/User");
-
 
 // BCrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
+/* GET signup  page */
+router.get('/signup', (req, res, next) => {
+  res.render('auth/signup');
+});
+
 //-------- sign up function
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email    = req.body.email;
-  const message  = req.body.message;
-
 
   //----------- validate that both fields are correctly filled up
   if (username === "" || password === "" || email === "") {
@@ -47,22 +44,22 @@ router.post("/signup", (req, res, next) => {
         return;
       }
 
-// --------  using nodemailer to send and get eMails
-let transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: process.env.appsGmailAccount,
-    pass: process.env.gmailPassword 
-  }
-});
+                    // --------  using nodemailer to send and get eMails
+                    // let transporter = nodemailer.createTransport({
+                    //   service: 'Gmail',
+                    //   auth: {
+                    //     user: process.env.appsGmailAccount,
+                    //     pass: process.env.gmailPassword 
+                    //   }
+                    // });
 
-transporter.sendMail({
-  from: '"My Awesome Project 👻" <myawesome@project.com>',
-  to: email,  
-  text: message,
-  html: `<b>${message}</b>`
+                    // transporter.sendMail({
+                    //   from: '"My Awesome Project 👻" <myawesome@project.com>',
+                    //   to: email,  
+                    //   text: message,
+                    //   html: `<b>${message}</b>`
 
-});
+                    // });
 
   //------------------- continue after validations
       const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -86,7 +83,7 @@ transporter.sendMail({
       next(error);
     });
 
-}); //--------- End sing up function
+}); //--------- End sign up function
 
 
 
@@ -161,67 +158,57 @@ passport.use(new GoogleStrategy({
 }));//--------- End sing up function
 
 
+// must use form in html for post!
 //================================================
 /* GET /user edit page */
-// router.post('/profile/:id', (req, res, next)=>{
+router.post('/profile/:id', (req, res, next)=>{
+  //console.log("===========-----------",req.params.id);
+  User.findById(req.params.id)
+    .then((theUser) => {
+      res.render('auth/profile', { user: theUser });
 
-//   User.findById(req.params.id)
-//     .then((theUser) => {
-//       res.render('/profile', { user: theUser });
+    })
+    .catch((err) => {
+      next(err);
+    })
 
-//     })
-//     .catch((err) => {
-//       next(err);
-//     })
+})
 
-// })
+/*   rout sent, after using form action */
+router.post('/profile/update/:id', uploadCloud.single('photo'), (req, res, next)=>{
 
-// /*   Editing A User page */
-// router.post('/profile/:id',(req, res, next)=>{
-
-//   console.log(req.params.id, userObject);
-
-//   res.redirect('/')
-
-//   })/*   End Editing A User page */
-//===============================================
-
-
-// /*   Editing A User page */
-// router.post('/profile/:id', uploadCloud.single('photo'), (req, res, next)=>{
-
-//   //----------------------------------- movie example
-//   // const userSchema = new Schema({
-//   //   username: String,
-//   //   password: String,
-//   //   email:    String,
-//   //   googleID: String,
-//   //   image:    String,
-//   //   favorites: Array,
-//   //   mustWatch: Array,
-//   //   easySunday: Array
+  //----------------------------------- user example
+  // const userSchema = new Schema({
+  //   username: String,
+  //   password: String,
+  //   email:    String,
+  //   googleID: String,
+  //   image:    String,
+  //   favorites: Array,
+  //   mustWatch: Array,
+  //   easySunday: Array
  
 
-//    const userObject = {
-//     username: req.body.username,
-//     password: req.body.password,
-//     email   : req.body.email,
-//     image   : req.body.image,
-//     }
+   const userObject = {
+    username: req.body.username,
+   // password: req.body.password,  //need to figure out how to not chnage password if leave empty and change with hash if change
+    email   : req.body.email,
+    image   : req.body.image,
+    }
 
-//     if(req.file){
-//       userObject.imgName = req.file.originalname;
-//       userObject.imgPath = req.file.url;
-//       }
-//        User.findByIdAndUpdate(req.params.id, userObject )
-//       .then((response)=>{
-//          res.redirect('/')
-//             })
-//             .catch ((err)=>{
-//                 next(err);
-//             })
+    if(req.file){
+      userObject.imgName = req.file.originalname;
+      userObject.imgPath = req.file.url;
+      }
+       User.findByIdAndUpdate(req.params.id, userObject )
+      .then((response)=>{
+         res.redirect('/')
+            })
+            .catch ((err)=>{
+                next(err);
+            })
 
-//   })/*   End Editing A User page */
+})/*   End Editing A User page */
 
 module.exports = router;
 

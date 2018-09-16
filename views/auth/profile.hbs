@@ -1,68 +1,48 @@
 
+
+{{!-- const userSchema = new Schema({
+  username: String,
+  password: String,
+  email:    String,
+  googleID: String,
+  image:    String,
+  favorites: Array,
+  mustWatch: Array,
+  easySunday: Array,
+  imgName: String,
+  imgPath: String
+} --}}
+
 <div class="location-center">
-    <form id="form" action="/signup" method="POST">
-      <h2>Sign Up</h2>
+    <form id="form" action="/profile/update/{{user._id}}" method="POST">
+      <h2>Edit User</h2>
   
       <label for="username">Username</label><br>
-      <input class="form-control" type="text" name="username" placeholder="AnakinSkywalker">
+      <input class="form-control" type="text" name="username" value="{{user.username}}">
       <br>
   
-      <label for="password">Password</label><br>
-      <input class="form-control" type="password" name="password" placeholder="DeathStar">
+      {{!-- <label for="password">New Password</label><br>
+      <input class="form-control" type="password" name="password" value="{{user.password}}">
       <br>
+
+      <label for="password">Confirme Password</label><br>
+      <input class="form-control" type="password" name="password" value="{{user.password}}">
+      <br> --}}
   
       <label for="email">eMail</label><br>
-      <input class="form-control" type="text" name="email" placeholder="Anakin@Skywalker.com">
+      <input class="form-control" type="text" name="email" value="{{user.email}}">
       <br>
   
+      <label for="email">image src</label><br>
+      <input class="form-control" type="text" name="image" value="{{user.image}}">
+      <br>
+
       {{#if errorMessage}}
       <div class="error-message">{{ errorMessage }}</div>
       {{/if}}
   
-      <button class="btn btn-dark">Create account</button>
-      <br> <br>
-      <p class="account-message">
-        Have an account? <a class="btn btn-dark" href="/login">Log in</a>
-      </p>
-      <p class="account-message">
-       logIn with google <a class="btn btn-google" href="/auth/google"> Google</a>
-      </p>
+      <button class="btn btn-dark">Edit account</button>
     </form>
 </div>
 
 
-Hello editing
-
-
-
-<h1>Eddit {{movie.title}} to The Library</h1>
-
-
-<form action="/movies/update/{{movie._id}}" method="POST" enctype="multipart/form-data">
-
-    <label for="">Name</label>
-    <input type="text" name="title" value="{{movie.title}}">
-
-    <label for="">genre</label>
-    <input type="text" name="genre" value="{{movie.genre}}">
-
-
-    <label for="">Plot</label>
-    <input type="text" name="plot" value="{{movie.plot}}">
-  
-    <label for="">imageSrc</label>
-    <input type="text" name="image" value="{{movie.image}}">
-
-    <label>Poster</label>
-    <input type="file" name="photo">
-
-    <label for="">Actors</label>
-    <select name="actors">
-        {{#each actors}}
-    <option value="{{this._id}}">{{this.name}}</option>
-        {{/each}}
-    </select>
-
-    <button>Edit</button>
-
-</form>

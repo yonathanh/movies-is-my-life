@@ -10,13 +10,19 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-
-/*============== <layout navBar> ============================================*/
-body{
+body {
   background:url('/images/toothless.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   padding:50px;
+}
+
+/*============== <layout navBar> ============================================*/
+
+.profile-img {
+
+  max-width: 70px;
+  border-radius: 10px;
 }
 
 .dropdown-menu {
