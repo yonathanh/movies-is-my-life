@@ -1,0 +1,14 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+
+<div class="container"></div>
+  {{#each cinemaData}}
+  <div class="col-md-3">
+     <div id="frame" class="well text-center">
+       <h2>{{this.siteName}}</h2>
+       <a class="btn btn-dark" href="{{this.siteLink}}" target="_blank"><p>{{this.siteLink}}</p></a>
+    </div>
+  </div>
+  {{/each}}
+</div>

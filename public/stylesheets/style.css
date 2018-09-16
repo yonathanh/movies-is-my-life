@@ -1,0 +1,114 @@
+/* style.css */
+/*============== <Global> ==============*/
+body {
+  padding: 50px;
+  color: #9c0d31;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+/*============== <layout navBar> ============================================*/
+body {
+  background: url("/images/toothless.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px; }
+
+.dropdown-menu {
+  background-color: #c0a9a9; }
+
+.form-control {
+  background-color: black; }
+
+.btn-dark {
+  color: #a59b9b;
+  border: solid 1px;
+  border-color: #4d4747;
+  background-color: #302b2b; }
+
+.btn-dark:hover {
+  color: #fff;
+  background-color: #4d0718; }
+
+#login-dp {
+  min-width: 250px;
+  padding: 14px 14px 0;
+  overflow: hidden;
+  background-color: rgba(95, 79, 79, 0.8); }
+
+#login-dp .help-block {
+  font-size: 12px; }
+
+#login-dp .bottom {
+  background-color: rgba(8, 5, 5, 0.8);
+  border-top: 1px solid #ddd;
+  clear: both;
+  padding: 14px; }
+
+#login-dp .social-buttons {
+  margin: 12px 0; }
+
+#login-dp .social-buttons a {
+  width: 100%; }
+
+#login-dp .form-group {
+  margin-bottom: 10px; }
+
+.btn-google {
+  color: #fff;
+  background-color: #9c0d31; }
+
+.btn-google:hover {
+  color: #fff;
+  background-color: #690820; }
+
+@media (max-width: 768px) {
+  #login-dp {
+    background-color: inherit;
+    color: #fff; }
+  #login-dp .bottom {
+    background-color: inherit;
+    border-top: 0 none; } }
+
+/*============== <home> ============================================*/
+/*============== <header> ==============*/
+.jumbotron {
+  background-image: url("/images/hexagon-wallpapers.jpg");
+  background-size: cover;
+  padding-bottom: 390px;
+  border-radius: 10px; }
+
+/*============== <movie results> ==============*/
+#results img, #movie img {
+  width: 80%; }
+
+.well {
+  background-color: #212420;
+  max-height: 360px; }
+
+@media (min-width: 960px) {
+  #results .col-md-2 .img {
+    height: 260px; }
+  #results .col-md-3 .img {
+    height: 240px; } }
+
+/*============== <auth> ==============*/
+form {
+  max-width: 320px; }
+
+.location-center {
+  display: flex;
+  justify-content: center; }
+
+/*============== <section 2> ==============*/
+/*============== <footer> ==============*/
+/*============== <about> ============================================*/
+/*============== <header> ==============*/
+/*============== <section 1> ==============*/
+/*============== <section 2> ==============*/
+/*============== <footer> ==============*/
+/*============== <gallerry> =======================================*/
+/*============== <header> ==============*/
+/*============== <section 1> ==============*/
+/*============== <section 2> ==============*/
+/*============== <footer> ==============*/
+
+/*# sourceMappingURL=style.css.map */

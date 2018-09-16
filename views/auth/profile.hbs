@@ -1,0 +1,68 @@
+
+<div class="location-center">
+    <form id="form" action="/signup" method="POST">
+      <h2>Sign Up</h2>
+  
+      <label for="username">Username</label><br>
+      <input class="form-control" type="text" name="username" placeholder="AnakinSkywalker">
+      <br>
+  
+      <label for="password">Password</label><br>
+      <input class="form-control" type="password" name="password" placeholder="DeathStar">
+      <br>
+  
+      <label for="email">eMail</label><br>
+      <input class="form-control" type="text" name="email" placeholder="Anakin@Skywalker.com">
+      <br>
+  
+      {{#if errorMessage}}
+      <div class="error-message">{{ errorMessage }}</div>
+      {{/if}}
+  
+      <button class="btn btn-dark">Create account</button>
+      <br> <br>
+      <p class="account-message">
+        Have an account? <a class="btn btn-dark" href="/login">Log in</a>
+      </p>
+      <p class="account-message">
+       logIn with google <a class="btn btn-google" href="/auth/google"> Google</a>
+      </p>
+    </form>
+</div>
+
+
+Hello editing
+
+
+
+<h1>Eddit {{movie.title}} to The Library</h1>
+
+
+<form action="/movies/update/{{movie._id}}" method="POST" enctype="multipart/form-data">
+
+    <label for="">Name</label>
+    <input type="text" name="title" value="{{movie.title}}">
+
+    <label for="">genre</label>
+    <input type="text" name="genre" value="{{movie.genre}}">
+
+
+    <label for="">Plot</label>
+    <input type="text" name="plot" value="{{movie.plot}}">
+  
+    <label for="">imageSrc</label>
+    <input type="text" name="image" value="{{movie.image}}">
+
+    <label>Poster</label>
+    <input type="file" name="photo">
+
+    <label for="">Actors</label>
+    <select name="actors">
+        {{#each actors}}
+    <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <button>Edit</button>
+
+</form>

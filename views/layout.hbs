@@ -1,16 +1,137 @@
+
+<!-- Layout -->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{title}}</title>
-  <link rel="stylesheet" href="/stylesheets/style.css" />
-</head>
-<body>
 
-  {{{body}}}
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <!-- Bootstrap -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
 
-  <script src="/javascripts/script.js"></script>
-</body>
+    <!-- scripts for axios and jquery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+ <!-- NavBar-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li ><a href="/cinema">Cinema <span class="sr-only">(current)</span></a></li>
+        <li><a href="/movies/addMovie">Add Movie</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">My Favorites</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Must Watch</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Easy Sunday</a></li>
+            </ul>
+        </li>
+      </ul>
+      <form id="searchForm" class="navbar-form navbar-left" action="/search" method="POST">
+        <div  class="form-group">
+          <input id="searchText" type="text" class="form-control" name="searchText" placeholder="Search Movie">
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">My Favorites</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Must Watch</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Easy Sunday</a></li>
+            </ul>
+          </li>
+        
+            {{#if user}}
+            <li class="float-right"><a href="/logout">Logout</a> </li>
+            <a class="float-right" href="/profile"> {{user.username}}</a>
+             <img class="float-right" src="{{user.image}}" alt="">
+            {{else}}
+            <li class="float-right"><a href="/login">Log In</a></li>
+            <li class="float-right"><a href="/signup">Sign Up</a> </li>
+            {{/if}}
+
+        <!-- Login Dropdown -->
+        {{#unless user}}
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+			  <ul id="login-dp" class="dropdown-menu">
+				<li>
+					 <div class="row">
+							<div class="col-md-12">
+								Login via
+								<div class="social-buttons">
+									<a href="/auth/google" class="btn btn-google"><i class="fa fa-google"></i> Google</a>
+								</div>
+                  <p>or</p>
+								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+										<div class="form-group">
+											 <label class="sr-only" for="user-name">User Name</label>
+											 <input type="text" class="form-control" id="user-name" placeholder="User Name" required>
+										</div>
+										<div class="form-group">
+											 <label class="sr-only" for="exampleInputPassword2">Password</label>
+											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                       <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+										</div>
+										<div class="form-group">
+											 <button type="submit" class="btn btn-dark btn-block">Sign in</button>
+										</div>
+										<div class="checkbox">
+											 <label>
+											 <input type="checkbox"> keep me logged-in
+											 </label>
+										</div>
+								 </form>
+							</div>
+							<div class="bottom text-center">
+							 <a href="/signup"><b>Sign Up</b></a>
+							</div>
+					 </div>
+				</li>
+			</ul>
+      {{/unless}}
+      </li><!-- End Login Dropdown -->
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  <body>
+
+    {{{body}}}
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/script.js"></script>
+  </body>
+
 </html>
