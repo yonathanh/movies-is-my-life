@@ -80,7 +80,7 @@ body {
   padding-bottom: 390px;
   border-radius: 10px; }
 
-/*============== <movie results> ==============*/
+/*============== <movie results in index.hbs> ==============*/
 #results img, #movie img {
   width: 80%; }
 
@@ -102,7 +102,13 @@ form {
   display: flex;
   justify-content: center; }
 
-/*============== <section 2> ==============*/
+/*============== <moviesAll> ==============*/
+#movie {
+  width: 50%; }
+
+.inline-block {
+  display: inline-block; }
+
 /*============== <footer> ==============*/
 /*============== <about> ============================================*/
 /*============== <header> ==============*/

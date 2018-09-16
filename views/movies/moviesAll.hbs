@@ -8,19 +8,24 @@
   {{#each movieData}}
   <div class="col-md-3">
      <div id="frame" class="well text-center">
-       <h2>{{this.title}}</h2>
-       <a class="btn btn-dark" href="{{this.imageSrc}}" target="_blank"><p>{{this.siteLink}}</p></a>
+       <img id="movie" src={{this.image}}> 
+       <h3>{{this.title}}</h3>
+       <a class="btn btn-dark" href="http://imdb.com/title/{{this.title}}" target="_blank" >Movie Details</a>
        <br><br>
-         <form action="/movies/editMovie/{{this._id}}" method="POST">
-          <button class="btn-danger">Edit</button>
-         </form>
-         <br>
-         <form action="/movies/delete/{{this._id}}" method="POST">
-          <button class="btn-danger">Delete</button>
-         </form>
+         <div class="inline-block">
+           <form action="/movies/editMovie/{{this._id}}" method="POST">
+            <button class="btn-danger">Edit</button>
+           </form>
+         </div>
+         <div class="inline-block">
+           <form action="/movies/delete/{{this._id}}" method="POST">
+            <button class="btn-danger">Delete</button>
+           </form>
+         </div>
     </div>
   </div>
   {{/each}}
 </div>
+
 
       

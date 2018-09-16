@@ -106,7 +106,7 @@ body {
 
 }
 
-/*============== <movie results> ==============*/
+/*============== <movie results in index.hbs> ==============*/
 
 #results img, #movie img {
 width: 80%;
@@ -139,7 +139,15 @@ form {
 }
 
 
-/*============== <section 2> ==============*/
+/*============== <moviesAll> ==============*/
+
+#movie {
+  width: 50%;
+}
+
+.inline-block {
+  display: inline-block;
+}
 
 
 
