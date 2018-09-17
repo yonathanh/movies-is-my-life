@@ -163,18 +163,22 @@ Movie.findByIdAndRemove(req.params.id)
 
 
 /*   Edding from imdbAPI new movie page */
-router.post('/', (req, res, next)=>{
-  
+router.post('/movies/addImdb', (req, res, next)=>{
+
+    const movieInfo =  req.body;
+    console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=",movieInfo.movieData);
 
     const movieObject = {
          user:       req.user._id,
-         title:      movieData.Title,
-         genre:      movieData.Genre,
-         image:      movieData.Poster,
+         title:      movieInfo.movieData[0],
+         imdbID:      movieInfo.movieData[1],
+         image:      movieInfo.movieData[2],
          }
+
+        // console.log(movieObject);
      Movie.create(movieObject)
          .then((response)=>{
-             res.redirect('/movies/moviesAll') 
+             res.redirect('/movies/moviesAll') // dosent work! needed to use window.location.replace("http://localhost:3000/movies/moviesAll");!!
          })
          .catch((err)=>{
             next(err);

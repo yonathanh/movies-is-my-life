@@ -14,7 +14,7 @@
     <img id="movie" src="{{this.image}}" alt="Movie Poster">
     {{/if}}
        <h3>{{this.title}}</h3>
-       <a class="btn btn-dark" href="http://imdb.com/title/{{this.title}}" target="_blank" >Movie Details</a>
+       <a class="btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
        <br><br>
          <div class="inline-block">
            <form action="/movies/editMovie/{{this._id}}" method="POST">

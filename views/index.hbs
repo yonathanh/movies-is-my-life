@@ -1,17 +1,22 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
-<p>{{user}}</p>
-<script>
+{{!-- <p>{{user}}</p> --}}
 
-      function addMovie(movieData) {
-    
-        console.log("-=-=-=-========================",movieData);
+<script> // need to find better locations for this function (main js file?)
+    function addMovie(movie) {
 
-      }
-      let x ="hello";
+        movieData = movie.split(",");
+        //console.log("-=-=-=-========================", movieData);
 
+          axios.post('/movies/addImdb', { movieData })
+          .then((movieData)=>{
 
+           console.log('added Success!');
+           location.href='/movies/moviesAll';
+           //window.location.replace("http://localhost:3000/movies/moviesAll");
+          });
+    }
 </script>
 
     <!-- JUMBOTRON -->

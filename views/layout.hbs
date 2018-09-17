@@ -48,11 +48,12 @@
             </ul>
         </li>
       </ul>
-      <form id="searchForm" class="navbar-form navbar-left" action="/search" method="POST">
+      <form  class="navbar-form navbar-left" action="/search" method="POST">
         <div  class="form-group">
           <input id="searchText" type="text" class="form-control" name="searchText" placeholder="Search Movie">
         </div>
-        <button type="submit" class="btn btn-dark">Submit</button>
+        <!-- onClick="location.href='/'" -->
+        <button id="searchForm" type="submit"  class="btn btn-dark">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
           <li><a href="/movies/addMovie">Add Movie</a></li>

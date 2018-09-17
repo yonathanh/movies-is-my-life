@@ -11,9 +11,9 @@ const userSchema = new Schema({
   favorites: Array,
   mustWatch: Array,
   easySunday: Array,
-  //myCinema: Array, [cinemaLinks],
-  imgName: String,
-  imgPath: String
+  myCinema: Array, 
+  imgName:  String,
+  imgPath:  String
 }, {
   timestamps: {
     createdAt: "created_at",

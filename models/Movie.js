@@ -6,6 +6,7 @@ const movieSchema = new Schema({
   title: String,
   genre: String,
   imdbRating: String,
+  imdbID: String,
   image: String,
   imgName: String,
   imgPath: String,
