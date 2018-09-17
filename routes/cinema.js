@@ -7,6 +7,29 @@ const ensureLogin = require("connect-ensure-login");
 const uploadCloud = require('../config/cloudinary.js');
 
 
+
+//---------- User Cinema
+
+/* GET /Links By link page */
+router.get('/cinema/myCinema', (req, res, next) => {
+
+    Cinema.find()
+    .then((cinemaData)=>{
+       // console.log(cinemaData);
+        res.render('cinema/userCinema', {cinemaData: cinemaData})
+    })
+    .catch((err)=>{
+        next(err);
+    })
+  });
+
+//--------------------------
+
+
+
+
+
+
 /* GET /Links By link page */
 router.get('/cinema', (req, res, next) => {
 

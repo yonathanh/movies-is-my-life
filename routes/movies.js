@@ -161,4 +161,25 @@ Movie.findByIdAndRemove(req.params.id)
 //   // })
 // });
 
+
+/*   Edding from imdbAPI new movie page */
+router.post('/', (req, res, next)=>{
+  
+
+    const movieObject = {
+         user:       req.user._id,
+         title:      movieData.Title,
+         genre:      movieData.Genre,
+         image:      movieData.Poster,
+         }
+     Movie.create(movieObject)
+         .then((response)=>{
+             res.redirect('/movies/moviesAll') 
+         })
+         .catch((err)=>{
+            next(err);
+         })
+})// --------------- End creating new movie
+
+
 module.exports = router;

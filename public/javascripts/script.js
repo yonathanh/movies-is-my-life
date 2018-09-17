@@ -16,20 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((listOfMovies)=>{
           let movies = listOfMovies.data.Search;
           let output = '';
+
           movies.forEach((movie) => {
             output += `
             <div class="col-md-3">
               <div id="frame" class="well text-center">
               <img src="${movie.Poster}"> 
                <h5>${movie.Title}</h5>
-               <a onclick="movieSelected('${movie.imdbID}')" class="btn btn-dark" href="http://imdb.com/title/${movie.imdbID}" target="_blank" >Movie Details</a>
+               <a  class="btn btn-dark" href="http://imdb.com/title/${movie.imdbID}" target="_blank" >Movie Details</a>
+               <button onclick="addMovie('${movie.Title}')" type="submit" class="btn btn-dark">Add</button>
               </div>
             </div>
             `;
+           
           });
   
         const resultDiv = document.getElementById('results')
         resultDiv.innerHTML = output;
+           
 
       })
       .catch((err)=>{
@@ -37,5 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
     } // ----------- End movie search function btn
+
 
 }, false);

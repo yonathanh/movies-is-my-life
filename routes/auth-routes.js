@@ -195,7 +195,6 @@ router.post('/profile/update/:id', uploadCloud.single('photo'), (req, res, next)
     email   : req.body.email,
     image   : req.body.image,
     }
-
     if(req.file){
       userObject.imgName = req.file.originalname;
       userObject.imgPath = req.file.url;

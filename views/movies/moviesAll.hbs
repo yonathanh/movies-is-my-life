@@ -8,7 +8,11 @@
   {{#each movieData}}
   <div class="col-md-3">
      <div id="frame" class="well text-center">
-       <img id="movie" src={{this.image}}> 
+     {{#if this.imgPath}}
+     <img id="movie" src="{{this.imgPath}}" alt="Movie Poster"> 
+    {{else}}
+    <img id="movie" src="{{this.image}}" alt="Movie Poster">
+    {{/if}}
        <h3>{{this.title}}</h3>
        <a class="btn btn-dark" href="http://imdb.com/title/{{this.title}}" target="_blank" >Movie Details</a>
        <br><br>
