@@ -121,8 +121,8 @@ const movies = require('./routes/movies');
 app.use('/', movies);
 
 //--------- user rout
-// const user = require('./routes/user');
-// app.use('/', user);
+const user = require('./routes/user');
+app.use('/', user);
 
 //--------- Api rout
 // const apiRoute = require('./routes/api')

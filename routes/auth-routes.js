@@ -1,11 +1,13 @@
 
-const express = require('express');
-const router = express.Router();
-const passport = require("passport");
-const ensureLogin = require("connect-ensure-login");
+const express        = require('express');
+const router         = express.Router();
+const passport       = require("passport");
+const ensureLogin    = require("connect-ensure-login");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-const uploadCloud = require('../config/cloudinary.js');
-const nodemailer = require('nodemailer');
+const uploadCloud    = require('../config/cloudinary.js');
+const Cinema         = require('../models/Cinema')
+const nodemailer     = require('nodemailer');
+
 
 // User model
 const User = require("../models/User");
@@ -21,13 +23,36 @@ router.get('/signup', (req, res, next) => {
 });
 
 //-------- sign up function
+
+// defaoult cinemas should get all the cinema list from Cinema Model
+let cinemaIDs =[];
+Cinema.find()
+.then((cinemas)=>{
+  cinemas.forEach((cinema)=>{
+    cinemaIDs.push(cinema._id); 
+  })
+//console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-",cinemaIDs);
+})
+.catch((err)=>{
+    next(err);
+}) // End defaoult cinemas should get all the cinema list
+
+
 router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const email    = req.body.email;
+  const userObject = {
+    username: req.body.username,
+    password: req.body.password, 
+    email   : req.body.email,
+    image   : req.body.image,
+    myCinema: cinemaIDs
+    }
+    if(req.file){
+      userObject.imgName = req.file.originalname;
+      userObject.imgPath = req.file.url;
+      }
 
   //----------- validate that both fields are correctly filled up
-  if (username === "" || password === "" || email === "") {
+  if (userObject.username === "" || userObject.password === "" || userObject.email === "") {
     res.render("auth/signup", {
       errorMessage: "Indicate a username and a password to sign up"
     });
@@ -35,7 +60,7 @@ router.post("/signup", (req, res, next) => {
   }
 
   //--------- check  if the indicated username is already defined
-  User.findOne({ username: username })
+  User.findOne({username: userObject.username })
     .then(user => {
       if (user !== null) {
         res.render("auth/signup", {
@@ -63,15 +88,15 @@ router.post("/signup", (req, res, next) => {
 
   //------------------- continue after validations
       const salt = bcrypt.genSaltSync(bcryptSalt);
-      const hashPass = bcrypt.hashSync(password, salt);
+      const hashPass = bcrypt.hashSync(userObject.password, salt);
 
-      const newUser = User({
-        username,
-        email,
-        password: hashPass
-      });
+      userObject.password = hashPass;
 
-      newUser.save().then(user => {
+      const newUser = User(userObject);
+
+      newUser.save()
+      .then(user => {
+
         // login after signup
         req.login(user, function (err) {
           if (err) { return next(err); }
@@ -100,8 +125,6 @@ router.post("/login", passport.authenticate("local", {
   failureFlash: true,
   passReqToCallback: true
 }));
-
-
 
 //---------  logout
 router.get("/logout", (req, res, next) => {
@@ -188,10 +211,9 @@ router.post('/profile/update/:id', uploadCloud.single('photo'), (req, res, next)
   //   mustWatch: Array,
   //   easySunday: Array
  
-
    const userObject = {
     username: req.body.username,
-   // password: req.body.password,  //need to figure out how to not chnage password if leave empty and change with hash if change
+    password: req.body.password,  //need to figure out how to not chnage password if leave empty and change with hash if change
     email   : req.body.email,
     image   : req.body.image,
     }
@@ -199,6 +221,12 @@ router.post('/profile/update/:id', uploadCloud.single('photo'), (req, res, next)
       userObject.imgName = req.file.originalname;
       userObject.imgPath = req.file.url;
       }
+
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass = bcrypt.hashSync(userObject.password, salt);
+
+      userObject.password = hashPass;
+
        User.findByIdAndUpdate(req.params.id, userObject )
       .then((response)=>{
          res.redirect('/')

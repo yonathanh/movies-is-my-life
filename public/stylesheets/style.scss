@@ -6,7 +6,7 @@
 
 body {
   padding: 50px;
-  color: #9c0d31;
+  color: rgb(253, 238, 238);
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -99,7 +99,8 @@ body {
 
 .jumbotron{
   // height: 40vw;
-  background-image: url("/images/hexagon-wallpapers.jpg") ;
+  //background-image: url("/images/Top-Gray-Wallpaper.jpg") ;
+  background: #212420;
   background-size: cover;
   padding-bottom: 390px;
   border-radius: 10px;

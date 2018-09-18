@@ -14,6 +14,10 @@
       <label for="email">eMail</label><br>
       <input class="form-control" type="text" name="email" placeholder="Anakin@Skywalker.com">
       <br>
+
+      <label for="imageSrc">image src</label><br>
+      <input class="form-control" type="text" name="image" value="{{user.image}}">
+      <br>
   
       {{#if errorMessage}}
       <div class="error-message">{{ errorMessage }}</div>
