@@ -91,6 +91,7 @@ router.post('/cinema/update/:id', uploadCloud.single('photo'), (req, res, next)=
 router.post('/cinema/delete/:id', ensureLogin.ensureLoggedIn("/login"), (req, res, next)=>{
   Cinema.findByIdAndRemove(req.params.id)
   .then((response)=>{
+     
       res.redirect('/cinema')
   })
   .catch((err)=>{

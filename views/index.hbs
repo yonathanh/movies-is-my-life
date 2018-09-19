@@ -1,33 +1,63 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
 
-{{!-- <p>{{user}}</p> --}}
-
+<!-- ==================  Scripts  ===================== -->
 <script> // need to find better locations for this function (main js file?)
     function addMovie(movie) {
 
         movieData = movie.split(",");
-        //console.log("-=-=-=-========================", movieData);
+        console.log("-=-=-=-========================", movieData);
 
           axios.post('/movies/addImdb', { movieData })
           .then((movieData)=>{
 
+            console.log("@#!#$!@#$!@#!#!~@#~!@#",movieData);
+//need to add promise here! so I can redirect syncroneslly to favoriets page or must watch page
            console.log('added Success!');
            location.href='/movies/moviesAll';
            //window.location.replace("http://localhost:3000/movies/moviesAll");
           });
     }
 </script>
+<!-- ================== End Scripts  ===================== -->
+
+
+
+{{!-- if(movieData[4] == 'f') {
+              location.href='/movies/favorites';
+            } else if(movieData[4] == 'm') {
+              location.href='/movies/mustWatch';
+            } else (movieData[4] == 'e') {
+              location.href='/movies/easySunday';
+            } --}}
 
     <!-- JUMBOTRON -->
     <div class="jumbotron text-center">
       <div class="container">
         <h1>Welcome To Movies Is My LIfe App</h1>
 
-        <!-- results of movies -->
-        <div class="container">
-         <div id="results" class="row"></div>
-        </div>
+
+{{!-- <h1>{{movies}}</h1> --}}
+ {{#each movies}}
+ <div class="col-md-3">
+   <div id="frame" class="well text-center">
+   <img id="movie" src="{{this.Poster}}"> 
+    <h5>{{this.Title}} (year{{this.Year}})</h5>
+    <a  class="btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
+    <li class="dropdown btn btn-dark">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add To<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},f')" type="submit" id="btn-add">Favorites</button>
+        <li role="separator" class="divider"></li>
+        <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},m')" type="submit" id="btn-add">Must Watch</button>
+        <li role="separator" class="divider"></li>
+        <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},e')" type="submit" id="btn-add">Easy Sunday</button>
+      </ul>
+    </li>
+   </div>
+ </div>
+ {{/each}}
+
 
 
 

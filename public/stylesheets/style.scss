@@ -4,6 +4,10 @@
 
 /*============== <Global> ==============*/
 
+ul {
+  list-style: none;
+}
+
 body {
   padding: 50px;
   color: rgb(253, 238, 238);
@@ -26,9 +30,11 @@ body {
 }
 
 .dropdown-menu {
-  background-color: rgb(192, 169, 169);
+  background-color: rgb(212, 178, 178);
+
 }
 .form-control {
+  color: white;
   background-color: black;
 }
 
@@ -90,11 +96,6 @@ body {
 
 
 
-
-
-
-
-
 /*============== <header> ==============*/
 
 .jumbotron{
@@ -115,7 +116,8 @@ width: 80%;
 
 .well {
   background-color: #212420;
-  max-height: 360px;
+  height: 435px;
+  position: relative;
 }
 
 @media (min-width:960px) {
@@ -142,17 +144,63 @@ form {
 
 /*============== <moviesAll> ==============*/
 
+/* Create three equal columns that floats next to each other */
+.col {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
 #movie {
-  width: 50%;
+  width: 70%;
+}
+
+.details {
+  position: absolute;
+  bottom: 35px;
+  right: 70px;
 }
 
 .inline-block {
   display: inline-block;
+  position: absolute;
+  bottom: 5px;
+  &.right {
+    right:70px;
+  }
+  &.left {
+    left:80px;
+  }
 }
 
+#btn-add {
+  color: rgb(31, 24, 24);
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+#btn-add:hover {
+  border-radius: 5px;
+  background: rgb(185, 172, 172);
+}
+
+/*============== <editMovie.hbs> ==============*/
 
 
-/*============== <footer> ==============*/
+.input-pruduct-name {
+border-radius: 5px;
+  background-color: black;
+}
+
 
 /*============== <about> ============================================*/
 

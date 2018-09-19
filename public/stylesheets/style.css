@@ -1,5 +1,8 @@
 /* style.css */
 /*============== <Global> ==============*/
+ul {
+  list-style: none; }
+
 body {
   padding: 50px;
   color: #fdeeee;
@@ -17,9 +20,10 @@ body {
   border-radius: 10px; }
 
 .dropdown-menu {
-  background-color: #c0a9a9; }
+  background-color: #d4b2b2; }
 
 .form-control {
+  color: white;
   background-color: black; }
 
 .btn-dark {
@@ -86,7 +90,8 @@ body {
 
 .well {
   background-color: #212420;
-  max-height: 360px; }
+  height: 435px;
+  position: relative; }
 
 @media (min-width: 960px) {
   #results .col-md-2 .img {
@@ -103,13 +108,50 @@ form {
   justify-content: center; }
 
 /*============== <moviesAll> ==============*/
+/* Create three equal columns that floats next to each other */
+.col {
+  float: left;
+  width: 33.33%;
+  padding: 10px; }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both; }
+
 #movie {
-  width: 50%; }
+  width: 70%; }
+
+.details {
+  position: absolute;
+  bottom: 35px;
+  right: 70px; }
 
 .inline-block {
-  display: inline-block; }
+  display: inline-block;
+  position: absolute;
+  bottom: 5px; }
+  .inline-block.right {
+    right: 70px; }
+  .inline-block.left {
+    left: 80px; }
 
-/*============== <footer> ==============*/
+#btn-add {
+  color: #1f1818;
+  background: none;
+  border: none;
+  padding: 0; }
+
+#btn-add:hover {
+  border-radius: 5px;
+  background: #b9acac; }
+
+/*============== <editMovie.hbs> ==============*/
+.input-pruduct-name {
+  border-radius: 5px;
+  background-color: black; }
+
 /*============== <about> ============================================*/
 /*============== <header> ==============*/
 /*============== <section 1> ==============*/

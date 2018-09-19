@@ -10,79 +10,98 @@
 // const cinemaLinks = [
 //   {
 //     siteName: 'solar movies', 
-//     siteLink: 'http://www6.solarmoviesc.com/',  
+//     siteLink: 'http://www6.solarmoviesc.com/',
+//     imageSrc: 'https://i.imgur.com/G3mpVcJ.png',  
 //   },
 //   {
 //     siteName: 'fmovies', 
-//     siteLink: 'http://www4.fmovies.sc/', 
+//     siteLink: 'http://www4.fmovies.sc/',
+//     imageSrc: 'http://i.imgur.com/elDGdiO.png',  
 //   },
 //   {
 //     siteName: 'deepmovie', 
-//     siteLink: 'https://www.deepmovie.ch/', 
+//     siteLink: 'https://www.deepmovie.ch/',
+//     imageSrc: 'String',  
 //   },
 //   {
 //     siteName: 'hdo.to', 
 //     siteLink: 'https://hdo.to/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'ymovies.tv', 
 //     siteLink: 'https://ymovies.tv/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'moviewatcher.is', 
 //     siteLink: 'https://moviewatcher.is/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'movie4u.live', 
 //     siteLink: 'https://movie4u.live/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'moviewatcher.is', 
 //     siteLink: 'https://moviewatcher.is/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'rainierland.is', 
 //     siteLink: 'http://www.rainierland.is/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: '123movies', 
 //     siteLink: 'http://www0.123movies.ag/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: '123moviesplay', 
 //     siteLink: 'https://www.123moviesplay.com/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'putlockerhub', 
 //     siteLink: 'http://putlockerhub.com/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'putlockers', 
 //     siteLink: 'https://putlockers.co/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'putlockers', 
 //     siteLink: 'https://putlockers.cz/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: '1putlocker.io', 
 //     siteLink: 'https://1putlocker.io/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'putlocker123.org', 
 //     siteLink: 'https://putlocker123.org/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'putlocker.cl', 
 //     siteLink: 'https://putlocker.cl/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'putlockers.la', 
 //     siteLink: 'http://www3.putlockers.la/', 
+//     imageSrc: 'String', 
 //   },
 //   {
 //     siteName: 'putlocker.run', 
 //     siteLink: 'https://putlocker.run/', 
+//     imageSrc: 'String', 
 //   },
 // ];
 
@@ -95,7 +114,7 @@
 //   console.log(err);
 // })
 
-//-------------------------------------------- End celebs
+//-------------------------------------------- End Cinema
 //-------------------------------------------- Start Movies
 
 // const mongoose = require('mongoose');

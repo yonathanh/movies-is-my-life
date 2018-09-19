@@ -1,0 +1,34 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+{{!-- <p>{{user}}</p> --}}
+
+<script> // need to find better locations for this function (main js file?)
+    function addMovie(movie) {
+
+        movieData = movie.split(",");
+        //console.log("-=-=-=-========================", movieData);
+
+          axios.post('/movies/addImdb', { movieData })
+          .then((movieData)=>{
+
+           console.log('added Success!');
+           location.href='/movies/moviesAll';
+           //window.location.replace("http://localhost:3000/movies/moviesAll");
+          });
+    }
+</script>
+
+    <!-- JUMBOTRON -->
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1>Welcome To Movies Is My LIfe App</h1>
+
+        <!-- results of movies -->
+        <div class="container">
+         <div id="results" class="row"></div>
+        </div>
+
+
+
+

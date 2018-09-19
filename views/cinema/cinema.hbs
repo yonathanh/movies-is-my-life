@@ -1,7 +1,7 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
-<a class="location-center btn btn-dark" href="cinema/new">Add New</a>
+<a class="btn btn-dark" href="cinema/new">Add New</a>
 <h1 class="location-center">Cinema</h1>
 
 <div class="container"></div>
@@ -16,7 +16,7 @@
          </form>
          <br>
          <form action="/cinema/delete/{{this._id}}" method="POST">
-          <button class="btn-danger">Delete</button>
+          <button class="btn-danger" onclick="alert('Deleting Cinema')" >Delete</button>
          </form>
     </div>
   </div>

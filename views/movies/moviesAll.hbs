@@ -1,7 +1,7 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
-<a class="location-center btn btn-dark" href="addMovie">Add New</a>
+<a class="btn btn-dark" href="addMovie">Add New</a>
 <h1 class="location-center">All The Movies</h1>
 
 <div class="container"></div>
@@ -13,17 +13,24 @@
     {{else}}
     <img id="movie" src="{{this.image}}" alt="Movie Poster">
     {{/if}}
-       <h3>{{this.title}}</h3>
-       <a class="btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
+       <h5>{{this.title}}(year{{this.year}})</h5>
+       <select class="form-control" name="openNewPage" onchange="window.open(this.value, '_blank', 'shilpijain' ,'modal=no');">
+          <option value="">Select Link</option>
+          {{#each this.links}}
+          <option value="{{this}}">{{this}}</option>
+          {{/each}}
+       </select>
+       <br>
+       <a class="details btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
        <br><br>
-         <div class="inline-block">
+         <div class="inline-block left">
            <form action="/movies/editMovie/{{this._id}}" method="POST">
             <button class="btn-danger">Edit</button>
            </form>
          </div>
-         <div class="inline-block">
+         <div class="inline-block right">
            <form action="/movies/delete/{{this._id}}" method="POST">
-            <button class="btn-danger">Delete</button>
+            <button class="btn-danger" onclick="alert('Deleting Cinema')">Delete</button>
            </form>
          </div>
     </div>

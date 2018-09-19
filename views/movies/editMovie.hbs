@@ -1,45 +1,94 @@
 
 
-Hello editing
+<script> // need to find better locations for this function (main js file?)
 
-{{!-- const movieSchema = new Schema({
-  user: String,
-  title: String,
-  genre: String,
-  imdbRating: String,
-  image: String,
-  imgName: String,
-  imgPath: String,
-  links: Array
-} --}}
+// script to show the links that are added after adding a link, (dom Menipulation)
+    function addLink(links) {
 
-<div class="location-center">
-    <form id="form" action="/movies/update/{{theMovie._id}}" method="POST" enctype="multipart/form-data">
-      <h2>Edit {{theMovie.title}} Movie</h2>
+        let linksData = links.split(",");
+        console.log("-=-=-=-========================", linksData);
 
-        <label for="siteName">Title</label>
+
+    }
+
+    //////////////////////////////Adding a New Link to the dom/////////////
+
+
+</script>
+<!-- ================== End Scripts  ===================== -->
+        {{!-- ============================= NEW =================================== --}}
+          <div class="new-product">
+            <h5>link.com</h5><!-- place for new element Link-->
+          </div>
+
+         <section class="create">
+          <ul>
+            <li><input class="input-pruduct-name" type="text" placeholder="Link Address" /></li>
+            <li><button class="btn btn-dark btn-create" id="new-item-create">Add</button></li>
+          </ul>
+         </section>
+        {{!-- ================================================================ --}}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="location-center">
+        
+        <form {{!-- action="/movies/update/{{theMovie._id}}" --}} method="POST" enctype="multipart/form-data">
+        <h5>Paste a link for this movie from cinema</h5>
+          <label for="title">Link</label>
+          <input class="form-control" type="text" name="theLinks" placeholder="https://ymovies.tv/?s=star&genre=&years=">
+          <br>
+          <button onclick="addLink('{{links}}')" type="submit" class="btn btn-dark">Submit</button>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="col">
+      <form id="form" action="/movies/update/{{theMovie._id}}" method="POST" enctype="multipart/form-data">
+        <h2>Edit {{theMovie.title}} Movie</h2>
+
+        <label for="Title">Title</label>
         <input class="form-control" type="text" name="theTitle" value="{{theMovie.title}}">
 
-        <label for="siteLink">Genre</label>
+        <label for="Genre">Genre</label>
         <input class="form-control" type="text" name="theGenre" value="{{theMovie.genre}}">
 
-        <label for="siteLink">imdbRating</label>
-        <input class="form-control" type="text" name="theRating" value="{{theMovie.imdbRating}}">
+        <label for="imdbRating">imdbRating</label>
+        <input class="form-control" type="text" name="theImdbRating" value="{{theMovie.imdbRating}}">
 
         <label for="siteLink">Image</label>
         <input class="form-control" type="text" name="theImage" value="{{theMovie.image}}">
 
         <label for="poster">Poster</label>
         <input class="form-control" type="file" name="thePhoto">
+        <br><br>
 
-        <label for="links">links</label>
-        <select class="form-control" name="theLinks">
-        {{#each links}}
-        <option value="{{this._id}}">{{this.siteLink}}</option>
-        {{/each}}
-        </select>
+          <label for="title">Link</label>
+          <input class="form-control" type="text" name="theLinks" placeholder="https://ymovies.tv/?s=star&genre=&years=">
+          <br>
 
-        <button class="btn btn-dark">Edit Link</button>
+        <button class="btn btn-dark">Edit Movie</button>
         <br> <br>
-    </form>
+      </form>
+    </div>
+
+    <div class="col">
+      <label for="links">Cinema links</label>
+      <div class="location-center">
+
+        <select class="form-control" name="openNewPage" onchange="window.open(this.value, '_blank', 'shilpijain' ,'modal=no');">
+          <option value="">Select Cinema</option>
+          {{#each links}}
+          {{!-- {{theMovie.title}} dosent get value in side of each!! fix!!!!! --}}
+          <option value="{{this.siteLink}}?s={{theMovie.title}}">{{this.siteLink}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+
+
+  </div>
 </div>

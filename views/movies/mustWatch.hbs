@@ -1,0 +1,39 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+<a class="btn btn-dark" href="addMovie">Add New</a>
+<h1 class="location-center">All The Movies</h1>
+
+<div class="container"></div>
+  {{#each listOfMovies}}
+  <div class="col-md-3">
+     <div id="frame" class="well text-center">
+     {{#if this.imgPath}}
+     <img id="movie" src="{{this.imgPath}}" alt="Movie Poster"> 
+    {{else}}
+    <img id="movie" src="{{this.image}}" alt="Movie Poster">
+    {{/if}}
+       <h5>{{this.title}} (year{{this.year}})</h5>
+       <select class="form-control" name="openNewPage" onchange="window.open(this.value, '_blank', 'shilpijain' ,'modal=no');">
+          <option value="">Select Link</option>
+          {{#each this.links}}
+          <option value="{{this}}">{{this}}</option>
+          {{/each}}
+       </select>
+       <br>
+       <a class="btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
+       <br>
+         <div class="inline-block left">
+           <form action="/movies/editMovie/{{this._id}}" method="POST">
+            <button class="btn-danger">Edit</button>
+           </form>
+         </div>
+         <div class="inline-block">
+           <form action="/movies/mustWatch/delete/{{this._id}}" method="POST">
+            <button  class="btn-danger" onclick="alert('Deleting Cinema')">Delete</button>
+           </form>
+         </div>
+    </div>
+  </div>
+  {{/each}}
+</div>

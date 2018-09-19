@@ -1,33 +1,70 @@
+ Add Movie Page
 
-Hello Add Movie
+<div class="container">
+  <div class="row">
 
-<div class="location-center">
-  <form action="/movies/addMovie" method="POST" enctype="multipart/form-data">
-    <h2>Add a New Movie To The Library</h2>
+    {{!-- In construction --}}
+    <div class="col">
+      <div class="location-center">
+        {{!-- <form action="/movies/addMovie" method="POST" enctype="multipart/form-data">
+          <h5>Add a link to this movie from cinema</h5>
 
-    <label for="title">Title</label>
-    <input class="form-control" type="text" name="title" placeholder="star wars">
+          <label for="title">Link</label>
+          <input class="form-control" type="text" name="link" placeholder="https://www.123moviesplay.com/?s=star">
+          <br> --}}
+          {{!-- <button class="btn btn-dark">Submit</button> --}}
+        </form>
 
-    <label for="genre">Genre</label>
-    <input class="form-control" type="text" name="genre" placeholder="comedy">
+      </div>
+    </div>
 
-    <label for="imdbRating">imdbRating</label>
-    <input class="form-control" type="text" name="imdbRating" placeholder="7.2">
 
-    <label for="imageSrc">imageSrc</label>
-    <input class="form-control" type="text" name="imageSrc" placeholder="http://star-wars-poster.jpg">
+      <div class="col">
+        <form action="/movies/addMovie" method="POST" enctype="multipart/form-data">
+          <h2>Add a New Movie To The Library</h2>
 
-    <label>Poster</label>
-    <input class="form-control" type="file" name="photo">
+          <label for="title">Title</label>
+          <input class="form-control" type="text" name="title" placeholder="star wars">
 
-    <label for="links">links</label>
-    <select class="form-control" name="links">
-    {{#each links}}
-    <option value="{{this._id}}">{{this.siteLink}}</option>
-    {{/each}}
-    </select>
+          <label for="genre">Genre</label>
+          <input class="form-control" type="text" name="genre" placeholder="comedy">
 
-    <br>
-    <button class="btn btn-dark" >Create</button>
-  </form>
+          <label for="imdbRating">imdbRating</label>
+          <input class="form-control" type="text" name="imdbRating" placeholder="7.2">
+
+          <label for="imageSrc">imageSrc</label>
+          <input class="form-control" type="text" name="imageSrc" placeholder="http://star-wars-poster.jpg">
+
+          <label>Poster</label>
+          <input class="form-control" type="file" name="photo">
+
+          <label for="title">Link</label>
+          <input class="form-control" type="text" name="links" placeholder="https://ymovies.tv/?s=star&genre=&years=">
+          <br>
+
+          <br>
+          <button class="btn btn-dark">Create</button>
+        </form>
+      </div>
+
+    
+    <div class="col">
+      <label for="links">Cinema links</label>
+      <div class="location-center">
+
+        <select class="form-control" name="openNewPage" onchange="window.open(this.value, '_blank', 'shilpijain' ,'modal=no');">
+          <option value="">Select Cinema</option>
+          {{#each links}}
+          <option value="{{this.siteLink}}">{{this.siteLink}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+
+    
+  </div>
 </div>
+  
+  
+

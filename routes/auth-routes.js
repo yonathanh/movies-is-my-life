@@ -44,7 +44,7 @@ router.post("/signup", (req, res, next) => {
     password: req.body.password, 
     email   : req.body.email,
     image   : req.body.image,
-    myCinema: cinemaIDs
+    myCinema: cinemaIDs.map(id => id.toString())
     }
     if(req.file){
       userObject.imgName = req.file.originalname;
@@ -166,7 +166,8 @@ passport.use(new GoogleStrategy({
         username: profile.displayName,
         image:    profile.photos[0].value,
         email:    profile.emails[0].value,
-        googleID: profile.id
+        googleID: profile.id,
+        myCinema: cinemaIDs.map(id => id.toString())
       });
 
       newUser.save()

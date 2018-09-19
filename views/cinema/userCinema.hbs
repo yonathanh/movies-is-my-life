@@ -1,11 +1,11 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
-<a class="location-center btn btn-dark" href="cinema/new">Add New</a>
+<a class="btn btn-dark" href="cinema/new">Add New</a>
 <h1 class="location-center">Cinema</h1>
 
 <div class="container"></div>
-  {{#each cinemaData}}
+  {{#each listOfCinemas}}
   <div class="col-md-3">
      <div id="frame" class="well text-center">
        <h2>{{this.siteName}}</h2>
@@ -15,7 +15,7 @@
           <button class="btn-danger">Edit</button>
          </form>
          <br>
-         <form action="/cinema/delete/{{this._id}}" method="POST">
+         <form action="/userCinema/delete/{{this._id}}" method="POST">
           <button class="btn-danger">Delete</button>
          </form>
     </div>

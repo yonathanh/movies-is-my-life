@@ -2,15 +2,16 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const movieSchema = new Schema({
-  user: String,
-  title: String,
-  genre: String,
+  user:    String,
+  title:   String,
+  year:    String,
+  genre:   String,
   imdbRating: String,
-  imdbID: String,
-  image: String,
+  imdbID:  String,
+  image:   String,
   imgName: String,
   imgPath: String,
-  links: Array
+  links:   Array
 }, {
   timestamps: {
     createdAt: "created_at",
