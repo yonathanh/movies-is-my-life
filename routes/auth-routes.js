@@ -6,6 +6,7 @@ const ensureLogin    = require("connect-ensure-login");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const uploadCloud    = require('../config/cloudinary.js');
 const Cinema         = require('../models/Cinema')
+const bcrypt         = require("bcryptjs");
 const nodemailer     = require('nodemailer');
 
 
