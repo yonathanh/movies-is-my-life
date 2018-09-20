@@ -62,8 +62,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 // end login passport
 
+//.connect('mongodb://localhost/movies-is-my-life-app', {useNewUrlParser: true})  
 mongoose
-  .connect('mongodb://localhost/movies-is-my-life-app', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
