@@ -4,7 +4,7 @@
 <h2>Creation New Link</h2>
 
 <div class="location-center">
-    <form id="form" action="/cinema/new" method="POST">
+    <form id="form" action="/cinema/new" method="POST" enctype="multipart/form-data">
       <h2>New Link</h2>
   
       <label for="siteName">siteName</label><br>
@@ -15,6 +15,10 @@
       <input class="form-control" type="text" name="siteLink" placeholder="http://www6.solarmoviesc.com">
       <br>
 
+      <label for="poster">Poster</label>
+      <input class="form-control" type="file" name="photo">
+      <br>
+      
       <button class="btn btn-dark">Create link</button>
       <br> <br>
     </form>

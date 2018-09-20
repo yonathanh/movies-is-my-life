@@ -26,23 +26,31 @@ router.get('/cinema/new', ensureLogin.ensureLoggedIn("/login"), (req, res, next)
 })
 
 /*   Creating new Cinema Link */
-router.post('/cinema/new', (req, res, next)=>{
+router.post('/cinema/new', uploadCloud.single('photo'), (req, res, next)=>{
 
   //----------------------------------- movie example
 //   const CinemaSchema = new Schema({
 //     siteName: String, //'solar movies'
 //     siteLink: String  //'http://www6.solarmoviesc.com'
+//     imgName: String,
+//     imgPath: String
 //   }, {
+
+    console.log("================",req.body);
   
-        const siteName  = req.body.siteName;
-        const siteLink  = req.body.siteLink
-       // const theImageName = req.file.originalname;
-       // const theImgPath   = req.file.url;
+        const linkObject = {
+            siteName: req.body.siteName,
+            siteLink: req.body.siteLink, 
+            imageSRC: req.body.siteImage,
+            }
+            console.log("================",req.body.siteName); 
+            console.log("================",req.body.siteLink);
+        if (req.file) {
+            linkObject.imgName = req.file.originalname;
+            linkObject.imgPath = req.file.url;
+             }
       
-           Cinema.create({
-            siteName: siteName,
-            siteLink: siteLink,
-          })
+           Cinema.create(linkObject)
           .then((response)=>{
               res.redirect('/cinema') 
           })
@@ -70,13 +78,14 @@ router.post('/cinema/update/:id', uploadCloud.single('photo'), (req, res, next)=
     const linkObject = {
         siteName: req.body.name, //.name must be diffrent then in creating new(siteName), beacuse if same name, will take the first one, (or use array)
         siteLink: req.body.link,
+        imageSRC: req.body.siteImage,
         }
         console.log("================",req.body.name); 
         console.log("================",req.body.link);
-    // if (req.file) {
-    //  linkObject.imgName = req.file.originalname;
-    //  linkObject.imgPath = req.file.url;
-    //   }
+    if (req.file) {
+     linkObject.imgName = req.file.originalname;
+     linkObject.imgPath = req.file.url;
+      }
     Cinema.findByIdAndUpdate(req.params.id, linkObject)
     .then((response) => {
         res.redirect('/cinema')

@@ -26,6 +26,7 @@
        </a>
        <div class="inline-block right">
         <form action="/movies/delete/{{this._id}}" method="POST">
+        {{!-- user onclick="confirm('Deleting Cinema')"  but need to make cancel work!! --}}
         <button class="btn-danger" onclick="alert('Deleting Cinema')">Delete</button>
         </form>
        </div>
