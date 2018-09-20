@@ -6,16 +6,13 @@ const ensureLogin    = require("connect-ensure-login");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const uploadCloud    = require('../config/cloudinary.js');
 const Cinema         = require('../models/Cinema')
-const bcrypt         = require("bcryptjs");
 const nodemailer     = require('nodemailer');
-
+// BCrypt to encrypt passwords
+const bcrypt = require("bcryptjs");
+const bcryptSalt = 10;
 
 // User model
 const User = require("../models/User");
-
-// BCrypt to encrypt passwords
-const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
 
 
 /* GET signup  page */
