@@ -8,6 +8,11 @@
   {{#each cinemaData}}
   <div class="col-md-3">
      <div id="frame" class="well text-center">
+        {{#if this.imgPath}}
+        <img class="float-right profile-img" src="{{this.imgPath}}" alt="">
+        {{else}}
+        <img class="float-right profile-img" src="{{this.image}}" alt="">
+        {{/if}}
        <h2>{{this.siteName}}</h2>
        <a class="btn btn-dark" href="{{this.siteLink}}" target="_blank"><p>{{this.siteLink}}</p></a>
        <br><br>
