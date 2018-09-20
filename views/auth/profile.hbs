@@ -14,7 +14,7 @@
 } --}}
 
 <div class="location-center">
-    <form id="form" action="/profile/update/{{user._id}}" method="POST">
+    <form id="form" action="/profile/update/{{user._id}}" method="POST" enctype="multipart/form-data">
       <h2>Edit User</h2>
   
       <label for="username">Username</label><br>
@@ -41,6 +41,9 @@
       <input class="form-control" type="text" name="image" value="{{user.image}}">
       <br>
       
+      <label for="profileImg">Profile Img</label>
+      <input class="form-control" type="file" name="photo">
+      <br>
       {{#if errorMessage}}
       <div class="error-message">{{ errorMessage }}</div>
       {{/if}}

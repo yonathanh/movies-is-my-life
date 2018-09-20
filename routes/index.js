@@ -2,13 +2,20 @@ const express = require('express');
 const router  = express.Router();
 const axios = require('axios');
 
+let firstSearchValue = 'wall'; // want to make option to change this from client side, in options -> defaoult search
+
+/* GET Default search word page */
+router.post('/default', (req, res, next) => {
+  console.log("PPPPPPPPPPPPPP",req.body.defaultSearch);
+  firstSearchValue = req.body.defaultSearch;
+  res.redirect('/')
+});
 
 
-//--------------- move script.js to work from here!!!! inside rout homepage!!!!
 
-const firstSearchValue = 'wall'; // want to make optipn to change this from client side, in options -> defaoult search
 /* GET home page */
 router.get('/', (req, res, next) => {
+  
   axios.get(`http://www.omdbapi.com?s=${firstSearchValue}&apikey=thewdb`)
   .then((listOfMovies)=>{
     let movies = listOfMovies.data.Search;

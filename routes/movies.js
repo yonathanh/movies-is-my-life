@@ -65,7 +65,7 @@ router.post('/movies/addMovie', uploadCloud.single('photo'), (req, res, next)=>{
 })// --------------- End creating new movie
 
 /*   Editing A movie */
-router.post('/movies/editMovie/:id', ensureLogin.ensureLoggedIn("/login"),(req, res, next)=>{
+router.get('/movies/editMovie/:id', ensureLogin.ensureLoggedIn("/login"),(req, res, next)=>{
 
   Cinema.find()
     .then((links) => {
@@ -73,7 +73,7 @@ router.post('/movies/editMovie/:id', ensureLogin.ensureLoggedIn("/login"),(req, 
       Movie.findById(req.params.id)
 
         .then((theMovie) => {
-          res.render('movies/editMovie', { theMovie: theMovie, links: links });
+          res.render('movies/editMovie', { theMovie: theMovie, links: links});
         })
         .catch((err) => {
           next(err);
@@ -106,13 +106,40 @@ router.post('/movies/update/:id', uploadCloud.single('photo'), (req, res, next)=
     }
   Movie.findByIdAndUpdate(req.params.id, movieObject)
   .then((response) => {
-      res.redirect('/movies/moviesAll')
+
+        let redir = "";
+
+        if(req.session.destination == 'f'){
+        redir = 'favorites'
+    }else if(req.session.destination == 'm'){
+        edir = 'mustWatch'
+    }else if(req.session.destination == 'e'){
+        redir = 'easySunday'
+    }else {redir = 'moviesAll'}
+
+      res.redirect('/movies/' + redir)
   })
   .catch((err) => {
       next(err);
   })
 })
 
+/*   rout sent, after using form action updating the links only */
+router.post('/movies/updateLinks/:id', (req, res, next)=>{
+          
+    const movieObject = {user: req.user._id};
+  //console.log('0000000000000000',req.body.aLink);
+    if(req.body.aLink) {
+      movieObject.$push = {links: req.body.aLink};
+        }
+    Movie.findByIdAndUpdate(req.params.id, movieObject)
+    .then((response) => {
+        res.redirect('/movies/moviesAll')
+    })
+    .catch((err) => {
+        next(err);
+    })
+  })
 
 /*   Deleting A movies Link */
 router.post('/movies/delete/:id', ensureLogin.ensureLoggedIn("/login"), (req, res, next)=>{

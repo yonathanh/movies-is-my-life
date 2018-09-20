@@ -1,9 +1,20 @@
 
 /* style.css */
-
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 /*============== <Global> ==============*/
-
+h1, h2, {
+  text-transform: uppercase;
+  text-shadow: 0 2px 3px red;
+  letter-spacing: 3px;
+  font-size: 1.2rem;
+  font-family: 'Indie Flower', cursive;
+  border-radius: 10px;
+  animation: header 5s ease-in infinite alternate;
+}
+h2 {
+  font-size: 30px
+}
 ul {
   list-style: none;
 }
@@ -82,6 +93,12 @@ body {
   background-color:#690820;
 }
 
+
+.navbar-form {
+  // margin-left: 20px;
+  }
+
+
 @media(max-width:768px){
   #login-dp{
       background-color: inherit;
@@ -91,6 +108,11 @@ body {
       background-color: inherit;
       border-top:0 none;
   }
+
+  .navbar-form {
+  margin-left: 100px;
+  }
+
 }
 /*============== <home> ============================================*/
 
@@ -98,10 +120,63 @@ body {
 
 /*============== <header> ==============*/
 
+.main-header {
+
+  text-transform: uppercase;
+  text-shadow: 0 2px 3px red;
+  letter-spacing: 3px;
+  font-size: 1.2rem;
+  font-family: 'Indie Flower', cursive;
+  // background: rgba(27, 59, 23, 0.3);
+  padding: 10px;
+  border-radius: 10px;
+  animation: header 5s ease-in infinite alternate;
+}
+
+
+//----- gif animation -------
+.main-wrap {
+  position: relative;
+}
+
+.main-gif {
+  position: absolute;
+  width: 60px;
+  bottom: 70px;
+  left: 0;
+  animation: gifWalk 30s linear infinite;
+}
+
+@keyframes gifWalk {
+  0% {
+    transform: translateX(0) scaleX(-1);
+    opacity:1;
+
+  } 
+  95% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(1040px) scaleX(-1);
+    opacity: 0;
+  }
+}
+
+@keyframes header {
+  from {
+      color: white;
+      text-shadow: 0 2px 3px red;
+  } to {
+      color: red;
+      text-shadow: 0 2px 5px red;
+  }
+}
+//----- End gif animation -------
+
 .jumbotron{
   // height: 40vw;
   //background-image: url("/images/Top-Gray-Wallpaper.jpg") ;
-  background: #212420;
+  background: rgba(27, 59, 23, 0.3);;
   background-size: cover;
   padding-bottom: 390px;
   border-radius: 10px;
@@ -118,7 +193,18 @@ width: 80%;
   background-color: #212420;
   height: 435px;
   position: relative;
+
+  &:hover {
+    transform: scale(1.1, 1.1);
+    z-index: 100;
+    transition: all 1s ease-in;
+    border-color: rgb(119, 18, 18);
+    box-shadow: 0 0 5px rgb(168, 15, 15);
+    background: rgba(47, 117, 19, 0.3);
+  }
 }
+
+
 
 @media (min-width:960px) {
   #results .col-md-2 .img{
@@ -144,13 +230,6 @@ form {
 
 /*============== <moviesAll> ==============*/
 
-/* Create three equal columns that floats next to each other */
-.col {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-}
-
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -165,19 +244,20 @@ form {
 
 .details {
   position: absolute;
-  bottom: 35px;
+  bottom: 45px;
   right: 70px;
 }
 
 .inline-block {
   display: inline-block;
   position: absolute;
-  bottom: 5px;
+  bottom: 0px;
   &.right {
     right:70px;
   }
   &.left {
     left:80px;
+    bottom: 14px;
   }
 }
 

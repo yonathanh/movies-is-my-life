@@ -4,13 +4,20 @@
 
 // script to show the links that are added after adding a link, (dom Menipulation)
     function addLink(links) {
+console.log("-=xxxxxxxxxxxxxxxxxxxxx");
+        movieData = movie.split(",");
+        console.log("-=-=-=-========================", movieData);
 
-        let linksData = links.split(",");
-        console.log("-=-=-=-========================", linksData);
+          axios.post('/movies/addImdb', { movieData })
+          .then((movieData)=>{
 
-
+            console.log("@#!#$!@#$!@#!#!~@#~!@#",movieData);
+//need to add promise here! so I can redirect syncroneslly to favoriets page or must watch page or somthing else to fix it???
+           console.log('added Success!');
+           location.href='/movies/moviesAll';
+           //window.location.replace("http://localhost:3000/movies/moviesAll");
+          });
     }
-
     //////////////////////////////Adding a New Link to the dom/////////////
 
 
@@ -24,28 +31,28 @@
          <section class="create">
           <ul>
             <li><input class="input-pruduct-name" type="text" placeholder="Link Address" /></li>
-            <li><button class="btn btn-dark btn-create" id="new-item-create">Add</button></li>
+            <li><button onclick="addLink('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},m')" type="submit" id="btn-add">Must Watch</button><button class="btn btn-dark btn-create" id="new-item-create">Add</button></li>
           </ul>
          </section>
         {{!-- ================================================================ --}}
 
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col-12 col-md-4">
       <div class="location-center">
         
-        <form {{!-- action="/movies/update/{{theMovie._id}}" --}} method="POST" enctype="multipart/form-data">
+        <form action="/movies/updateLinks/{{theMovie._id}}" method="POST" >
         <h5>Paste a link for this movie from cinema</h5>
           <label for="title">Link</label>
-          <input class="form-control" type="text" name="theLinks" placeholder="https://ymovies.tv/?s=star&genre=&years=">
+          <input class="form-control" type="text" name="aLink" placeholder="https://ymovies.tv/?s=star&genre=&years=">
           <br>
-          <button onclick="addLink('{{links}}')" type="submit" class="btn btn-dark">Submit</button>
+          <button type="submit" class="btn btn-dark">Submit</button>
         </form>
 
       </div>
     </div>
 
-    <div class="col">
+    <div class="col-12 col-md-4">
       <form id="form" action="/movies/update/{{theMovie._id}}" method="POST" enctype="multipart/form-data">
         <h2>Edit {{theMovie.title}} Movie</h2>
 
@@ -62,7 +69,7 @@
         <input class="form-control" type="text" name="theImage" value="{{theMovie.image}}">
 
         <label for="poster">Poster</label>
-        <input class="form-control" type="file" name="thePhoto">
+        <input class="form-control" type="file" name="photo">
         <br><br>
 
           <label for="title">Link</label>
@@ -74,15 +81,15 @@
       </form>
     </div>
 
-    <div class="col">
+    <div class="col-12 col-md-4">
       <label for="links">Cinema links</label>
       <div class="location-center">
 
         <select class="form-control" name="openNewPage" onchange="window.open(this.value, '_blank', 'shilpijain' ,'modal=no');">
           <option value="">Select Cinema</option>
           {{#each links}}
-          {{!-- {{theMovie.title}} dosent get value in side of each!! fix!!!!! --}}
-          <option value="{{this.siteLink}}?s={{theMovie.title}}">{{this.siteLink}}</option>
+          {{!-- {{theMovie.title}} used ../ to get ut of the #each!!!!! --}}
+          <option value="{{this.siteLink}}?s={{../theMovie.title}}">{{this.siteLink}}</option>
           {{/each}}
         </select>
       </div>

@@ -185,7 +185,7 @@ passport.use(new GoogleStrategy({
 // must use form in html for post!
 //================================================
 /* GET /user edit page */
-router.post('/profile/:id', (req, res, next)=>{
+router.get('/profile/:id', (req, res, next)=>{
   //console.log("===========-----------",req.params.id);
   User.findById(req.params.id)
     .then((theUser) => {
@@ -200,6 +200,7 @@ router.post('/profile/:id', (req, res, next)=>{
 
 /*   rout sent, after using form action */
 router.post('/profile/update/:id', uploadCloud.single('photo'), (req, res, next)=>{
+  console.log('---------------------------------------',req.file)
 
   //----------------------------------- user example
   // const userSchema = new Schema({
@@ -212,21 +213,24 @@ router.post('/profile/update/:id', uploadCloud.single('photo'), (req, res, next)
   //   mustWatch: Array,
   //   easySunday: Array
  
+  //need to figure out how to not chnage password if leave empty and change with hash if change
+
    const userObject = {
     username: req.body.username,
-    password: req.body.password,  //need to figure out how to not chnage password if leave empty and change with hash if change
     email   : req.body.email,
     image   : req.body.image,
     }
+    if(req.body.password){
+      userObject.password = req.body.password;
+      const salt          = bcrypt.genSaltSync(bcryptSalt);
+      const hashPass      = bcrypt.hashSync(userObject.password, salt);
+
+      userObject.password = hashPass;
+      }
     if(req.file){
       userObject.imgName = req.file.originalname;
       userObject.imgPath = req.file.url;
       }
-
-      const salt = bcrypt.genSaltSync(bcryptSalt);
-      const hashPass = bcrypt.hashSync(userObject.password, salt);
-
-      userObject.password = hashPass;
 
        User.findByIdAndUpdate(req.params.id, userObject )
       .then((response)=>{

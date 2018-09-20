@@ -1,26 +1,26 @@
 
 <div class="location-center">
   <form action="/login" method="POST" id="form">
-    <h2>Login</h2>
+    <h2>Sign in</h2>
 
     <label for="username">Username</label>
-    <input class="form-control" type="text" name="username" placeholder="obiwan">
+    <input class="form-control" type="text" name="username" placeholder="User Name">
 
     <label for="password">Password</label>
-    <input class="form-control" type="password" name="password" placeholder="thatsnomoon">
+    <input class="form-control" type="password" name="password" placeholder="Password">
 
     {{#if message }}
       <div class="error-message">{{ message }}</div>
     {{/if}}
     <br>
-    <button class="btn btn-dark" >Log in</button>
+    <button class="btn btn-dark" >Sign in</button>
 
     <p class="account-message">
       Don't have account? <a class="btn btn-dark" href="/signup">Sign up</a>
     </p>
 
     <p class="account-message">
-      Log In with google!! <a class="btn btn-google" href="/auth/google">Google</a>
+      Sign in with google!! <a class="btn btn-google" href="/auth/google">Google</a>
     </p>
   </form>
 </div>

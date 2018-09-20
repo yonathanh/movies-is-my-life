@@ -1,43 +1,22 @@
 {{!-- <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p> --}}
 
-<!-- ==================  Scripts  ===================== -->
-<script> // need to find better locations for this function (main js file?)
-    function addMovie(movie) {
-
-        movieData = movie.split(",");
-        console.log("-=-=-=-========================", movieData);
-
-          axios.post('/movies/addImdb', { movieData })
-          .then((movieData)=>{
-
-            console.log("@#!#$!@#$!@#!#!~@#~!@#",movieData);
-//need to add promise here! so I can redirect syncroneslly to favoriets page or must watch page
-           console.log('added Success!');
-           location.href='/movies/moviesAll';
-           //window.location.replace("http://localhost:3000/movies/moviesAll");
-          });
-    }
-</script>
-<!-- ================== End Scripts  ===================== -->
 
 
-
-{{!-- if(movieData[4] == 'f') {
-              location.href='/movies/favorites';
-            } else if(movieData[4] == 'm') {
-              location.href='/movies/mustWatch';
-            } else (movieData[4] == 'e') {
-              location.href='/movies/easySunday';
-            } --}}
+        {{!-- <div class="main-wrap">
+          <img class="main-gif" src="/images/skoll.gif" alt="main-gif">
+        <h1 class="main-header">Welcome To Movies Are My LIfe App</h1> --}}
 
     <!-- JUMBOTRON -->
     <div class="jumbotron text-center">
       <div class="container">
-        <h1>Welcome To Movies Is My LIfe App</h1>
-
+        <div class="main-wrap">
+          <img class="main-gif" src="/images/skoll.gif" alt="main-gif">
+        <h1 class="main-header">Welcome To Movies Are My LIfe App</h1>
+        </div>
 
 {{!-- <h1>{{movies}}</h1> --}}
+
  {{#each movies}}
  <div class="col-md-3">
    <div id="frame" class="well text-center">
@@ -47,11 +26,50 @@
     <li class="dropdown btn btn-dark">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add To<span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},f')" type="submit" id="btn-add">Favorites</button>
+
+
+
+
+        <form action="/movies/addImdb" method="POST">
+
+        <input type="hidden" value = "{{this.Title}}"  name="movieData">
+        <input type="hidden" value = "{{this.imdbID}}" name="movieData">
+        <input type="hidden" value = "{{this.Poster}}" name="movieData">
+        <input type="hidden" value = "{{this.Year}}"   name="movieData">
+        <input type="hidden" value = "f"               name="movieData">
+
+        <button type="submit" id="btn-add">Favorites</button>
+        </form>
+
+        <form action="/movies/addImdb" method="POST">
+
+        <input type="hidden" value = "{{this.Title}}"  name="movieData">
+        <input type="hidden" value = "{{this.imdbID}}" name="movieData">
+        <input type="hidden" value = "{{this.Poster}}" name="movieData">
+        <input type="hidden" value = "{{this.Year}}"   name="movieData">
+        <input type="hidden" value = "m"               name="movieData">
+
+        <button type="submit" id="btn-add">Must Watch</button>
+        </form>
+
+        <form action="/movies/addImdb" method="POST">
+
+        <input type="hidden" value = "{{this.Title}}"  name="movieData">
+        <input type="hidden" value = "{{this.imdbID}}" name="movieData">
+        <input type="hidden" value = "{{this.Poster}}" name="movieData">
+        <input type="hidden" value = "{{this.Year}}"   name="movieData">
+        <input type="hidden" value = "e"               name="movieData">
+
+        <button type="submit" id="btn-add">Easy Sunday</button>
+        </form>
+
+        
+        {{!-- <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},f')" type="submit" id="btn-add">Favorites</button>
         <li role="separator" class="divider"></li>
         <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},m')" type="submit" id="btn-add">Must Watch</button>
         <li role="separator" class="divider"></li>
-        <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},e')" type="submit" id="btn-add">Easy Sunday</button>
+        <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},e')" type="submit" id="btn-add">Easy Sunday</button> --}}
+
       </ul>
     </li>
    </div>

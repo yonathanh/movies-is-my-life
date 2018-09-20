@@ -1,4 +1,31 @@
 
+
+
+
+
+<!-- ==================  Scripts  ===================== -->
+<script> // need to find better locations for this function (main js file?)
+    function sginIn() {
+
+        let username = document.querySelector(".input-price-of-product").value;
+        let password = document.querySelector(".input-price-of-product").value;
+        console.log("-=-=-=-========================", username);
+        console.log("-=-=-=-========================", password);
+          axios.post('/movies/addImdb', { movieData })
+          .then((movieData)=>{
+
+            console.log("@#!#$!@#$!@#!#!~@#~!@#",movieData);
+  //need to add promise here! so I can redirect syncroneslly to favoriets page or must watch page
+           console.log('added Success!');
+           location.href='/movies/moviesAll';
+           //window.location.replace("http://localhost:3000/movies/moviesAll");
+          });
+    }
+</script>
+<!-- ================== End Scripts  ===================== -->
+
+
+
 <!-- Layout -->
 
 <!DOCTYPE html>
@@ -35,16 +62,21 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ><a href="/cinema">Cinema <span class="sr-only">(current)</span></a></li>
-        <li><a href="/movies/moviesAll">Show all Movies</a></li>
+        <li ><a href="/cinema">Cinema Links<span class="sr-only">(current)</span></a></li>
+        <li><a href="/movies/addMovie">Add Movie</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">My Favorites</a></li>
+              <li class="float-right"><a href="/login">Sign in</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Must Watch</a></li>
+               <form action="/default" method="POST">
+               <div  class="form-group">
+               <input type="text" class="form-control" name="defaultSearch" placeholder="Default Search" >
+               </div>
+              <button id="btn-add" type="submit">Submit</button>
+              </form>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Easy Sunday</a></li>
+              <li><a href="#">More Options</a></li>
             </ul>
         </li>
       </ul>
@@ -56,38 +88,41 @@
         <button id="searchForm" type="submit"  class="btn btn-dark">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="/movies/addMovie">Add Movie</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options
-              <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Options<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="/cinema/myCinema">My Cinema</a></li>
+              <li><a href="/movies/moviesAll">Show all Movies</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="/movies/favorites">My Favorites</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="/movies/mustWatch">Must Watch</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="/movies/easySunday">Easy Sunday</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/cinema/myCinema">My Cinema</a></li>
             </ul>
           </li>
         
             {{#if user}}
             <li class="float-right"><a href="/logout">Logout</a> </li>
-            <li><br>
-              <form action="/profile/{{user._id}}" method="POST">
-              <button class="btn-dark float-right">{{user.username}}</button>
-              </form>
+            <li>
+              <a href="/profile/{{user._id}}">
+                <button class="btn-dark float-right">{{user.username}}</button>
+              </a>
             </li>
-             <img class="float-right profile-img" src="{{user.image}}" alt="">
+              {{#if user.imgPath}}
+              <img class="float-right profile-img" src="{{user.imgPath}}" alt="">
+              {{else}}
+              <img class="float-right profile-img" src="{{user.image}}" alt="">
+              {{/if}}
             {{else}}
-            <li class="float-right"><a href="/login">Log In</a></li>
             <li class="float-right"><a href="/signup">Sign Up</a> </li>
             {{/if}}
 
         <!-- Login Dropdown -->
         {{#unless user}}
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Sign in</b> <span class="caret"></span></a>
 			  <ul id="login-dp" class="dropdown-menu">
 				<li>
 					 <div class="row">
@@ -97,26 +132,23 @@
 									<a href="/auth/google" class="btn btn-google"><i class="fa fa-google"></i> Google</a>
 								</div>
                   <p>or</p>
-								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-										<div class="form-group">
-											 <label class="sr-only" for="user-name">User Name</label>
-											 <input type="text" class="form-control" id="user-name" placeholder="User Name" required>
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputPassword2">Password</label>
-											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                       <div class="help-block text-right"><a href="">Forget the password ?</a></div>
-										</div>
-										<div class="form-group">
-											 <button type="submit" class="btn btn-dark btn-block">Sign in</button>
-										</div>
-										<div class="checkbox">
-											 <label>
-											 <input type="checkbox"> keep me logged-in
-											 </label>
-										</div>
-								 </form>
-							</div>
+                  <div class="location-center">
+                    <form action="/login" method="POST" id="form">
+
+                      <label for="username">Username</label>
+                      <input class="form-control" type="text" name="username" placeholder="User Name">
+
+                      <label for="password">Password</label>
+                      <input class="form-control" type="password" name="password" placeholder="Password">
+
+                      {{#if message }}
+                        <div class="error-message">{{ message }}</div>
+                      {{/if}}
+                      <br>
+                      <button class="btn btn-dark" >Sign in</button>
+                    </form>
+                  </div>
+							 </div>
 							<div class="bottom text-center">
 							 <a href="/signup"><b>Sign Up</b></a>
 							</div>

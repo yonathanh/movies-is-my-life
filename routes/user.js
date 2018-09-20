@@ -44,11 +44,13 @@ router.post('/userCinema/delete/:id', ensureLogin.ensureLoggedIn("/login"), (req
 
 
 
+
+
 /*   Edding from imdbAPI to user movies */
 router.post('/movies/addImdb', ensureLogin.ensureLoggedIn("/login"), (req, res, next)=>{
 
   const movieInfo =  req.body;
-  //console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=",movieInfo.movieData[4]);
+  //console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=",req.body);
 
   const movieObject = {
        user:       req.user._id,
@@ -61,18 +63,20 @@ router.post('/movies/addImdb', ensureLogin.ensureLoggedIn("/login"), (req, res, 
       // console.log(movieObject);
    Movie.create(movieObject)
        .then((response)=>{
-         // console.log("the movie info after it has been created $$$$$$$$$$$$$$$$$$$$$ ", response);
+         //console.log("the movie info after it has been created $$$$$$$$$$$$$$$$$$$$$ ", response);
           User.findById(req.user._id)
           .then((userFromDB) => {
 
+            req.session.destination = movieInfo.movieData[4];
 
             
             if(movieInfo.movieData[4] == 'f') {
               userFromDB.favorites.push(response._id.toString())
 
                 userFromDB.save().then((userUpdated) =>{
-                    console.log("the updated user info after adding to favoriets @@@@@@@@@@@@@@@@@@@@@ ", userUpdated);
-                    res.redirect('/movies/favofites') 
+
+                  //res.redirect('/movies/favorites') 
+                   res.redirect("/movies/editMovie/" + response._id) 
                 })
                 .catch((err) => {
                     next(err);
@@ -82,7 +86,8 @@ router.post('/movies/addImdb', ensureLogin.ensureLoggedIn("/login"), (req, res, 
 
                   userFromDB.save().then((userUpdated) =>{
                     //  console.log("the updated user info after adding to favoriets @@@@@@@@@@@@@@@@@@@@@ ", userUpdated);
-                      res.redirect('/movies/moviesAll') 
+                    // res.redirect('/movies/mustWatch') 
+                      res.redirect("/movies/editMovie/" + response._id) 
                   })
                   .catch((err) => {
                       next(err);
@@ -92,7 +97,8 @@ router.post('/movies/addImdb', ensureLogin.ensureLoggedIn("/login"), (req, res, 
 
                   userFromDB.save().then((userUpdated) =>{
                     //  console.log("the updated user info after adding to favoriets @@@@@@@@@@@@@@@@@@@@@ ", userUpdated);
-                      res.redirect('/movies/moviesAll') 
+                    // res.redirect('/movies/easySunday') 
+                      res.redirect("/movies/editMovie/" + response._id) 
                   })
                   .catch((err) => {
                       next(err);

@@ -1,8 +1,8 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{!-- <h2>Welcome to {{title}}</h2> --}}
 
 <a class="btn btn-dark" href="addMovie">Add New</a>
-<h1 class="location-center">All The Movies</h1>
+<h2 class="location-center">Easy Sunday Movies</h2>
 
 <div class="container"></div>
   {{#each listOfMovies}}
@@ -20,19 +20,15 @@
           <option value="{{this}}">{{this}}</option>
           {{/each}}
        </select>
-       <br>
-       <a class="btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
-       <br>
-         <div class="inline-block left">
-           <form action="/movies/editMovie/{{this._id}}" method="POST">
-            <button class="btn-danger">Edit</button>
-           </form>
-         </div>
-         <div class="inline-block">
-           <form action="/movies/easySunday/delete/{{this._id}}" method="POST">
-            <button class="btn-danger" onclick="alert('Deleting Cinema')">Delete</button>
-           </form>
-         </div>
+       <a class="details btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
+       <a class="inline-block left" href="/movies/editMovie/{{this._id}}">
+        <button class="btn-danger">Edit</button>
+       </a>
+       <div class="inline-block right">
+        <form action="/movies/delete/{{this._id}}" method="POST">
+        <button class="btn-danger" onclick="alert('Deleting Cinema')">Delete</button>
+        </form>
+       </div>
     </div>
   </div>
   {{/each}}

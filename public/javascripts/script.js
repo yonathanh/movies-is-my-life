@@ -1,4 +1,25 @@
 
+//<!-- ==================  Scripts  ===================== -->
+
+    function addMovie(movie) {
+console.log("-=xxxxxxxxxxxxxxxxxxxxx");
+        movieData = movie.split(",");
+        console.log("-=-=-=-========================", movieData);
+
+          axios.post('/movies/addImdb', { movieData })
+          .then((movieData)=>{
+
+            console.log("@#!#$!@#$!@#!#!~@#~!@#",movieData);
+//need to add promise here! so I can redirect syncroneslly to favoriets page or must watch page or somthing else to fix it???
+           console.log('added Success!');
+           location.href='/movies/moviesAll';
+           //window.location.replace("http://localhost:3000/movies/moviesAll");
+          });
+    }
+
+//<!-- ================== End Scripts  ===================== -->
+
+
 // document.addEventListener('DOMContentLoaded', () => {
 //     console.log('IronGenerator JS imported successfully!');
   
