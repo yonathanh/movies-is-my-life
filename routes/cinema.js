@@ -97,16 +97,16 @@ router.post('/cinema/update/:id', uploadCloud.single('photo'), (req, res, next)=
 
 
 /*   Deleting A Cinema Link */
-router.post('/cinema/delete/:id', ensureLogin.ensureLoggedIn("/login"), (req, res, next)=>{
-  Cinema.findByIdAndRemove(req.params.id)
-  .then((response)=>{
+// router.post('/cinema/delete/:id', ensureLogin.ensureLoggedIn("/login"), (req, res, next)=>{
+//   Cinema.findByIdAndRemove(req.params.id)
+//   .then((response)=>{
      
-      res.redirect('/cinema')
-  })
-  .catch((err)=>{
-     next(err);
-  })
+//       res.redirect('/cinema')
+//   })
+//   .catch((err)=>{
+//      next(err);
+//   })
 
-})
+// })
 
 module.exports = router;
