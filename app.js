@@ -98,7 +98,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Movies Are My Life App';
+app.locals.title = 'I Live In A Movie App';
 
 // to use the user logged in, information in every page
 app.use(function(req, res, next) {
