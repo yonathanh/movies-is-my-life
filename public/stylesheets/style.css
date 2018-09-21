@@ -178,9 +178,7 @@ form {
   width: 70%; }
 
 .details {
-  position: absolute;
-  bottom: 45px;
-  right: 70px; }
+  margin-bottom: 5px; }
 
 .inline-block {
   display: inline-block;

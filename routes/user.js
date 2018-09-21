@@ -118,6 +118,49 @@ router.post('/movies/addImdb', ensureLogin.ensureLoggedIn("/login"), (req, res, 
 
 
 
+/*   Edding from allMovies to movie category folder */
+router.post('/movies/addToFolder/:id', ensureLogin.ensureLoggedIn("/login"), (req, res, next)=>{
+
+  const folderLocation =  req.body.location;
+
+  User.findById(req.user._id)
+
+        .then((userFromDB) => {
+
+              if(folderLocation == 'f') {
+                userFromDB.favorites.push(req.params.id.toString())
+
+                  userFromDB.save().then((userUpdated) =>{
+                      res.redirect('/movies/favorites') 
+                
+                  })
+                  .catch((err) => {
+                      next(err);
+                  })
+                }else if(folderLocation == 'm') {
+                  userFromDB.mustWatch.push(req.params.id.toString())
+
+                    userFromDB.save().then((userUpdated) =>{
+                      res.redirect('/movies/mustWatch') 
+                    })
+                    .catch((err) => {
+                        next(err);
+                    })
+                  }else if(folderLocation == 'e') {
+                  userFromDB.easySunday.push(req.params.id.toString())
+
+                    userFromDB.save().then((userUpdated) =>{
+                        res.redirect('/movies/easySunday') 
+                    })
+                    .catch((err) => {
+                        next(err);
+                    })
+                  } 
+
+     })       
+})/*   End Edding from allMovies to movie category folder folder */
+
+
 //---------- User Options
 
 /* GET movies from users favorites list */

@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const axios = require('axios');
 
-let firstSearchValue = 'wall'; // want to make option to change this from client side, in options -> defaoult search
+let firstSearchValue = 'star'; // want to make option to change this from client side, in options -> defaoult search
 
 /* GET Default search word page */
 router.post('/default', (req, res, next) => {

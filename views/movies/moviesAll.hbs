@@ -14,13 +14,34 @@
     <img id="movie" src="{{this.image}}" alt="Movie Poster">
     {{/if}}
        <h5>{{this.title}}(year{{this.year}})</h5>
-       <select class="form-control" name="openNewPage" onchange="window.open(this.value, '_blank', 'shilpijain' ,'modal=no');">
+       <select class="details form-control" name="openNewPage" onchange="window.open(this.value, '_blank', 'shilpijain' ,'modal=no');">
           <option value="">Select Link</option>
           {{#each this.links}}
           <option value="{{this}}">{{this}}</option>
           {{/each}}
-       </select>
-       <a class="details btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
+       </select> 
+       <a class="btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
+       <li class="dropdown btn btn-dark">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add To<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+
+        <form action="/movies/addToFolder/{{this._id}}" method="POST">
+        <input type="hidden" value = "f" name="location">
+        <button type="submit" id="btn-add">Favorites</button>
+        </form>
+
+        <form action="/movies/addToFolder/{{this._id}}" method="POST">
+        <input type="hidden" value = "m" name="location">
+        <button type="submit" id="btn-add">Must Watch</button>
+        </form>
+
+        <form action="/movies/addToFolder/{{this._id}}" method="POST">
+        <input type="hidden" value = "e" name="location">
+        <button type="submit" id="btn-add">Easy Sunday</button>
+        </form>
+
+      </ul>
+    </li>
        <a class="inline-block left" href="/movies/editMovie/{{this._id}}">
         <button class="btn-danger">Edit</button>
        </a>
