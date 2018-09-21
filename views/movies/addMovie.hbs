@@ -52,7 +52,7 @@
       <label for="links">Cinema links</label>
       <div class="location-center">
 
-        <select class="form-control" name="openNewPage" onchange="window.open(this.value, '_blank', 'shilpijain' ,'modal=no');">
+        <select class="form-control" name="openNewPage" onchange="window.open(this.value, '_blank');">
           <option value="">Select Cinema</option>
           {{#each links}}
           <option value="{{this.siteLink}}">{{this.siteLink}}</option>
