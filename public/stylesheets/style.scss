@@ -142,7 +142,7 @@ body {
 .main-gif {
   position: absolute;
   width: 60px;
-  bottom: 70px;
+  bottom: 65px;
   left: 0;
   animation: gifWalk 30s linear infinite;
 }
@@ -197,7 +197,7 @@ width: 80%;
   &:hover {
     transform: scale(1.1, 1.1);
     z-index: 100;
-    transition: all 1s ease-in;
+    transition: all 2s ease-in;
     border-color: rgb(119, 18, 18);
     box-shadow: 0 0 5px rgb(168, 15, 15);
     background: rgba(47, 117, 19, 0.3);
@@ -242,7 +242,7 @@ form {
   width: 70%;
 }
 
-.details {
+.select-links {
 margin-bottom: 5px;
 }
 
