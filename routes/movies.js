@@ -109,10 +109,10 @@ router.post('/movies/update/:id', uploadCloud.single('photo'), (req, res, next)=
 
         let redir = "";
 
-        if(req.session.destination == 'f'){
+          if(req.session.destination == 'f'){
         redir = 'favorites'
     }else if(req.session.destination == 'm'){
-        edir = 'mustWatch'
+        redir = 'mustWatch'
     }else if(req.session.destination == 'e'){
         redir = 'easySunday'
     }else {redir = 'moviesAll'}
@@ -134,7 +134,19 @@ router.post('/movies/updateLinks/:id', (req, res, next)=>{
         }
     Movie.findByIdAndUpdate(req.params.id, movieObject)
     .then((response) => {
-        res.redirect('/movies/moviesAll')
+
+        let redir = "";
+
+        if(req.session.destination == 'f'){
+      redir = 'favorites'
+  }else if(req.session.destination == 'm'){
+      redir = 'mustWatch'
+  }else if(req.session.destination == 'e'){
+      redir = 'easySunday'
+  }else {redir = 'moviesAll'}
+
+
+        res.redirect('/movies/' + redir)
     })
     .catch((err) => {
         next(err);
